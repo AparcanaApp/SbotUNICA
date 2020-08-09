@@ -10,21 +10,21 @@ using Microsoft.Bot.Schema;
 namespace Microsoft.BotBuilderSamples.Bots
 {
     public class EchoBot : ActivityHandler
+
     {
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            var replyText = $"Echo: {turnContext.Activity.Text}";
-            await turnContext.SendActivityAsync(MessageFactory.Text(replyText, replyText), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text($"SBotUNICA: {turnContext.Activity.Text}"), cancellationToken);
         }
 
-        protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnMembersAddeAsync(Ilist<Channel> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext)
+
         {
-            var welcomeText = "Hello and welcome!";
-            foreach (var member in membersAdded)
+            foreach (var member in memberAdded)
             {
-                if (member.Id != turnContext.Activity.Recipient.Id)
+                if (member - Id != turnContext.Activity.Recipient.Id)
                 {
-                    await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
+                    await turnContext - SendActivityAsync(MessageFactory.Text($"Hola y Bienvenido!"), cancellationToken);
                 }
             }
         }
